@@ -6,7 +6,6 @@
   <title>SHAGAET</title>
   <meta name="description" content="SHAGAET" />
 
-  <!-- Твой шрифт (если файл рядом) -->
   <style>
     @font-face{
       font-family:"TT Firs Neue";
@@ -49,6 +48,19 @@
         radial-gradient(700px 520px at 50% 110%, rgba(255,255,255,.06), transparent 55%),
         var(--bg);
       filter: saturate(1.1);
+    }
+    .spacer{
+      height: 140vh; /* сделай 200vh если хочешь ещё длиннее */
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius);
+      border: 1px dashed rgba(255,255,255,.14);
+      background: rgba(255,255,255,.03);
+      margin-top: 18px;
+      color: rgba(255,255,255,.35);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
     }
     .orb{
       position:fixed;
@@ -264,6 +276,42 @@
       to{ transform: translateY(0); opacity:1; }
     }
 
+    /* Big end block */
+    .end{
+      margin-top: 18px;
+      padding: 34px 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      text-align:center;
+      overflow:hidden;
+      transform: translateY(16px);
+      opacity: 0;
+    }
+
+    .end .big{
+      margin: 0;
+      font-family: "TT Firs Neue", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      font-weight: 700;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      font-size: clamp(40px, 8vw, 110px);
+      line-height: .95;
+      background: linear-gradient(90deg, rgba(255,255,255,.92), rgba(124,92,255,.92), rgba(45,212,191,.92));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 14px 40px rgba(0,0,0,.35));
+    }
+
+    .end .small{
+      margin: 10px 0 0;
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
     footer{
       margin-top: 18px;
       text-align:center;
@@ -281,8 +329,8 @@
     }
 
     @media (prefers-reduced-motion: reduce){
-      .orb, h1, .subtitle, .actions, .card{ animation: none !important; }
-      h1, .subtitle, .actions, .card{ opacity:1; transform:none; }
+      .orb, h1, .subtitle, .actions, .card, .end{ animation: none !important; }
+      h1, .subtitle, .actions, .card, .end{ opacity:1; transform:none; }
     }
   </style>
 </head>
@@ -297,11 +345,11 @@
       <section class="hero glass">
         <div class="pill"><span class="dot"></span> online • <span id="dt"></span></div>
         <h1>SHAGAET</h1>
-        <p class="subtitle">??</p>
+        <p class="subtitle">и оно свой куриный хуй показывает</p>
 
         <div class="actions">
           <!-- ЗАМЕНИ ссылку на свой TG -->
-          <a class="btn primary" href="https://t.me/shagaet" target="_blank" rel="noopener">@shagaet</a>
+          <a class="btn primary" href="https://t.me/shagaet" target="_blank" rel="noopener">Telegram</a>
           <a class="btn" href="#gallery">Фото</a>
         </div>
       </section>
@@ -314,22 +362,30 @@
       </div>
 
       <div class="grid">
-        <!-- Поменяй подписи/файлы под свои -->
+        <!-- Поменяй пути/подписи под свои -->
         <article class="card">
           <img src="img/pig.jpg" alt="Фото 1">
-          <div class="cap">жиовтное</div>
+          <div class="cap">Фото 1</div>
         </article>
 
         <article class="card">
           <img src="img/2.jpg" alt="Фото 2">
-          <div class="cap">быдло</div>
+          <div class="cap">Фото 2</div>
         </article>
 
         <article class="card">
           <img src="img/3.jpg" alt="Фото 3">
-          <div class="cap">куриный хуй</div>
+          <div class="cap">Фото 3</div>
         </article>
       </div>
+      <section class="spacer" aria-hidden="true">
+        scroll ↓
+      </section>
+      <!-- Большая надпись внизу (появится при доскролле) -->
+      <section class="end" id="the-end">
+        <h3 class="big">АРТУР</h3>
+        <p class="small">ты животное ебанутое</p>
+      </section>
 
       <footer>??</footer>
     </section>
@@ -351,8 +407,19 @@
         }
       });
     }, { threshold: 0.12 });
-
     cards.forEach((c) => io.observe(c));
+
+    // reveal big end title at the bottom
+    const end = document.querySelector("#the-end");
+    const endObs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          end.classList.add("inview");
+          endObs.unobserve(end);
+        }
+      });
+    }, { threshold: 0.25 });
+    endObs.observe(end);
   </script>
 </body>
 </html>
