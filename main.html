@@ -1,6 +1,193 @@
 <!doctype html>
 <html lang="ru">
-  <meta charset="utf-8">
-  <title>shagaet.ru</title>
-  <body>shagaet.ru test</body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SHAGAET</title>
+  <meta name="description" content="SHAGAET — скоро." />
+
+  <style>
+    /* 1) Подключение твоего шрифта (если положишь файл рядом) */
+    @font-face {
+      font-family: "TT Firs Neue";
+      src: url("./TTFirsNeue-Bold.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root{
+      --bg: #070A12;
+      --card: rgba(255,255,255,.06);
+      --border: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.65);
+      --accent: #7C5CFF;
+      --accent2: #2DD4BF;
+    }
+
+    * { box-sizing: border-box; }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      color: var(--text);
+      background:
+        radial-gradient(900px 500px at 15% 10%, rgba(124,92,255,.35), transparent 60%),
+        radial-gradient(850px 520px at 85% 25%, rgba(45,212,191,.22), transparent 62%),
+        radial-gradient(700px 500px at 50% 100%, rgba(255,255,255,.06), transparent 55%),
+        var(--bg);
+      display:grid;
+      place-items:center;
+      padding: 28px 16px;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif;
+    }
+
+    .wrap{
+      width: min(980px, 100%);
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      border-radius: 22px;
+      padding: 34px 28px;
+      box-shadow: 0 30px 90px rgba(0,0,0,.45);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(45,212,191,.18), transparent 60%);
+      opacity: .45;
+      pointer-events:none;
+      filter: blur(18px);
+    }
+
+    .content{
+      position: relative;
+      z-index: 1;
+      display:flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: center;
+      text-align:center;
+    }
+
+    .title{
+      font-family: "TT Firs Neue", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: clamp(44px, 7vw, 86px);
+      line-height: 1;
+      margin: 0;
+    }
+
+    .subtitle{
+      margin: 0;
+      max-width: 56ch;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .actions{
+      margin-top: 6px;
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    a.button{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid rgba(124,92,255,.42);
+      background: rgba(124,92,255,.16);
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      will-change: transform;
+    }
+
+    a.button:hover{
+      transform: translateY(-1px);
+      border-color: rgba(124,92,255,.75);
+      background: rgba(124,92,255,.22);
+    }
+
+    .tg-ico{
+      width: 18px;
+      height: 18px;
+      display:block;
+      fill: currentColor;
+      opacity: .95;
+    }
+
+    .foot{
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,.50);
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      color: rgba(255,255,255,.65);
+    }
+
+    .dot{
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 18px rgba(124,92,255,.55);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <section class="card" aria-label="SHAGAET landing">
+      <div class="content">
+        <div class="pill"><span class="dot"></span> о</div>
+
+        <h1 class="title">SHAGAET</h1>
+
+        <p class="subtitle">
+          пидорье
+        </p>
+
+        <div class="actions">
+          <!-- Замени ссылку на свою -->
+          <a class="button" href="https://t.me/shagaet" target="_blank" rel="noopener">
+            <svg class="tg-ico" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21.9 4.6c.2-.8-.6-1.5-1.3-1.2L2.8 10.5c-.8.3-.8 1.4 0 1.7l4.6 1.6 1.8 5.7c.2.7 1.1.9 1.6.4l2.7-2.9 5 3.7c.6.4 1.4.1 1.5-.6l2.1-15.5Zm-3.9 3.2-8.7 7.9c-.3.3-.5.6-.5 1v3.1l-1.4-4.5 12-7.5c.3-.2.7.2.6.5Z"/>
+            </svg>
+            Telegram
+          </a>
+        </div>
+
+        <div class="foot">© <span id="y"></span> shagaet.ru</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
 </html>
